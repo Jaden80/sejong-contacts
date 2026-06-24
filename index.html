@@ -523,7 +523,7 @@ function filterContacts(contacts, query, tab) {
 
   // 탭 필터
   if (tab === 'school') {
-    filtered = filtered.filter(c => c['분류'] === '학교');
+    filtered = filtered.filter(c => c['분류'] === '학교' || c['분류'] === '학교정보');
   } else if (tab === 'office') {
     filtered = filtered.filter(c => c['분류'] === '교육청');
   }
@@ -560,15 +560,19 @@ function escHtml(str) {
 // 카드 렌더링
 // ============================================================
 function renderCard(c, query) {
-  const isSchool  = c['분류'] === '학교';
+  const isSchoolInfo = c['분류'] === '학교정보';
+  const isSchool  = c['분류'] === '학교' || isSchoolInfo;
   const cls       = isSchool ? 'school' : 'office';
   const icon      = isSchool ? '🏫' : '🏛️';
-  const badgeTxt  = isSchool ? '학교' : '교육청';
+  const badgeTxt  = isSchool ? (isSchoolInfo ? '학교대표정보' : '학교') : '교육청';
   const phone     = c['연락처'] || '';
   const name      = c['성명']   || '';
   const pos       = c['직위']   || '';
   const org       = c['소속']   || '';
   const task      = c['업무']   || '';
+  const est       = c['개교일'] || '';
+  const clsNum    = c['학급수'] || '';
+  const stdNum    = c['학생수'] || '';
 
   // 전화 링크: 모바일은 tel:, 데스크톱은 복사 버튼
   let phoneHtml = '';
@@ -581,6 +585,27 @@ function renderCard(c, query) {
           📞 ${escHtml(phone)}
         </a>
       </div>`;
+  }
+
+  if (isSchoolInfo) {
+    return `
+      <article class="contact-card" style="border-left: 5px solid var(--color-school); background: #f8fafc; box-shadow: var(--shadow-md);" role="article">
+        <div class="card-top">
+          <div class="card-avatar school">${icon}</div>
+          <div class="card-info">
+            <div class="card-name" style="color: var(--color-primary-dark); font-size: 1.08rem;">
+              ${hl(name, query)}
+              <span class="badge school" style="background:#e0f2fe; color:#0369a1;">${badgeTxt}</span>
+            </div>
+            <div style="margin-top: 8px; font-size: 0.85rem; color: var(--color-text); display: grid; gap: 4px; border-top: 1px dashed var(--color-border); padding-top: 8px;">
+              ${est ? `<div>📅 <strong>개교일:</strong> ${escHtml(est)}</div>` : ''}
+              ${clsNum ? `<div>📊 <strong>학급수:</strong> ${escHtml(clsNum)}</div>` : ''}
+              ${stdNum ? `<div>👥 <strong>학생수:</strong> ${escHtml(stdNum)}</div>` : ''}
+            </div>
+          </div>
+        </div>
+        ${phoneHtml}
+      </article>`;
   }
 
   return `
@@ -606,6 +631,16 @@ function renderCard(c, query) {
 // ============================================================
 function renderResults() {
   const filtered = filterContacts(allContacts, searchQuery, currentTab);
+
+  // 학교정보 카드가 항상 상단에 오도록 정렬
+  filtered.sort((a, b) => {
+    const isInfoA = a['분류'] === '학교정보';
+    const isInfoB = b['분류'] === '학교정보';
+    if (isInfoA && !isInfoB) return -1;
+    if (!isInfoA && isInfoB) return 1;
+    return 0;
+  });
+
   const schoolFiltered = filterContacts(allContacts, searchQuery, 'school');
   const officeFiltered = filterContacts(allContacts, searchQuery, 'office');
   const allFiltered    = filterContacts(allContacts, searchQuery, 'all');
@@ -649,14 +684,22 @@ function renderResults() {
   if (currentTab === 'all') {
     // 전체 탭: 교육청 / 학교 섹션으로 분리
     const offices = filtered.filter(c => c['분류'] === '교육청');
-    const schools = filtered.filter(c => c['분류'] === '학교');
+    const schools = filtered.filter(c => c['분류'] === '학교' || c['분류'] === '학교정보');
 
     if (offices.length > 0) {
       html += `<div class="section-label">🏛️ 교육청 (${offices.length}명)</div>`;
       offices.forEach(c => { html += renderCard(c, searchQuery); });
     }
     if (schools.length > 0) {
-      html += `<div class="section-label">🏫 학교 교직원 (${schools.length}명)</div>`;
+      // 학교 섹션 내부에서도 마스터 정보 정렬 보장
+      schools.sort((a, b) => {
+        const isInfoA = a['분류'] === '학교정보';
+        const isInfoB = b['분류'] === '학교정보';
+        if (isInfoA && !isInfoB) return -1;
+        if (!isInfoA && isInfoB) return 1;
+        return 0;
+      });
+      html += `<div class="section-label">🏫 학교 대표 및 교직원 정보 (${schools.length}개)</div>`;
       schools.forEach(c => { html += renderCard(c, searchQuery); });
     }
   } else {

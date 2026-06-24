@@ -1,0 +1,7 @@
+# 모든 파일 제외
+*
+
+# 예외로 업로드할 웹페이지 관련 파일들만 허용
+!index.html
+!contacts.json
+!.gitignore

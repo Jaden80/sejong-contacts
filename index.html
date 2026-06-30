@@ -520,6 +520,7 @@ let allContacts = [];          // 전체 원본 데이터
 let currentTab = 'all';        // 현재 선택된 탭
 let searchQuery = '';          // 현재 검색어
 let isMobile = false;          // 모바일 여부 감지
+let displayLimit = 60;         // 한 번에 표시할 결과 제한 개수
 
 // 모바일 감지
 function detectMobile() {
@@ -709,15 +710,19 @@ function renderResults() {
     return;
   }
 
+  const totalCount = filtered.length;
+  const isLimited = totalCount > displayLimit;
+  const itemsToRender = isLimited ? filtered.slice(0, displayLimit) : filtered;
+
   // 탭에 따라 섹션 분리 렌더링
   let html = `<div class="result-header">
-    <span class="result-count">검색 결과 ${filtered.length}개</span>
+    <span class="result-count">검색 결과 ${totalCount}개${isLimited ? ` (상위 ${displayLimit}개 표시 중)` : ''}</span>
   </div>`;
 
   if (currentTab === 'all') {
     // 전체 탭: 교육청 / 학교 섹션으로 분리
-    const offices = filtered.filter(c => c['분류'] === '교육청');
-    const schools = filtered.filter(c => c['분류'] === '학교' || c['분류'] === '학교정보');
+    const offices = itemsToRender.filter(c => c['분류'] === '교육청');
+    const schools = itemsToRender.filter(c => c['분류'] === '학교' || c['분류'] === '학교정보');
 
     if (offices.length > 0) {
       html += `<div class="section-label">🏛️ 교육청 (${offices.length}명)</div>`;
@@ -736,10 +741,33 @@ function renderResults() {
       schools.forEach(c => { html += renderCard(c, searchQuery); });
     }
   } else {
-    filtered.forEach(c => { html += renderCard(c, searchQuery); });
+    itemsToRender.forEach(c => { html += renderCard(c, searchQuery); });
+  }
+
+  if (isLimited) {
+    html += `
+      <div style="text-align: center; margin: 24px 0 12px;">
+        <button id="btnMore" onclick="showMoreResults()" style="
+          padding: 11px 24px;
+          background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+          color: #fff;
+          border: none;
+          border-radius: var(--radius-sm);
+          font-weight: 700;
+          font-size: 0.82rem;
+          cursor: pointer;
+          box-shadow: 0 4px 12px rgba(100,80,200,0.15);
+          transition: opacity var(--transition);
+        ">더 많은 결과 보기 (남은 ${totalCount - displayLimit}개)</button>
+      </div>`;
   }
 
   area.innerHTML = html;
+}
+
+function showMoreResults() {
+  displayLimit += 60;
+  renderResults();
 }
 
 // ============================================================
@@ -790,6 +818,7 @@ function showToast(msg) {
 // ============================================================
 function switchTab(tab) {
   currentTab = tab;
+  displayLimit = 60; // 탭 전환 시 개수 제한 초기화
   document.querySelectorAll('.tab-btn').forEach(btn => {
     const active = btn.dataset.tab === tab;
     btn.classList.toggle('active', active);
@@ -807,6 +836,7 @@ let searchTimer;
 
 searchInput.addEventListener('input', () => {
   searchQuery = searchInput.value;
+  displayLimit = 60; // 새로운 입력 시 개수 제한 초기화
   clearBtn.style.display = searchQuery ? 'block' : 'none';
   clearTimeout(searchTimer);
   searchTimer = setTimeout(renderResults, 180); // 디바운싱
@@ -815,6 +845,7 @@ searchInput.addEventListener('input', () => {
 clearBtn.addEventListener('click', () => {
   searchInput.value = '';
   searchQuery = '';
+  displayLimit = 60; // 검색 초기화 시 개수 제한 초기화
   clearBtn.style.display = 'none';
   searchInput.focus();
   renderResults();

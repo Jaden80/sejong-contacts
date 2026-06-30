@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="?몄쥌?밸퀎?먯튂?쒓탳?≪껌 援먯쭅??諛??숆탳 ?곕씫泥??듯빀 寃???쒖뒪?? ?숆탳 援먯쭅?먭낵 援먯쑁泥?蹂몄껌 吏곸썝???곕씫泥섎? 鍮좊Ⅴ寃?寃?됲븯?몄슂." />
-  <meta name="keywords" content="?몄쥌援먯쑁泥? ?곕씫泥? 援먯쭅?? ?숆탳, ?꾪솕踰덊샇" />
-  <title>?몄쥌援먯쑁泥??곕씫泥??듯빀 寃??/title>
+  <meta name="description" content="세종특별자치시교육청 교직원 및 학교 연락처 통합 검색 시스템. 학교 교직원과 교육청 본청 직원의 연락처를 빠르게 검색하세요." />
+  <meta name="keywords" content="세종교육청, 연락처, 교직원, 학교, 전화번호" />
+  <title>세종교육청 연락처 통합 검색</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
@@ -39,7 +39,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', '留묒? 怨좊뵓', '?섎닎怨좊뵓', sans-serif;
+      font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', '나눔고딕', sans-serif;
       background: linear-gradient(135deg, #f0eaff 0%, #e8f4fd 40%, #fdf0ff 70%, #eafaf0 100%);
       background-attachment: fixed;
       color: var(--color-text);
@@ -50,7 +50,7 @@
     }
 
     /* ============================================================
-       ?ㅻ뜑
+       헤더
        ============================================================ */
     .app-header {
       background: rgba(255,255,255,0.6);
@@ -110,7 +110,7 @@
     }
 
     /* ============================================================
-       硫붿씤 而⑦뀒?대꼫 諛??κ렐 移대뱶 (?ъ슜???붽뎄?ы빆 諛섏쁺)
+       메인 컨테이너 및 둥근 카드 (사용자 요구사항 반영)
        ============================================================ */
     .main-container {
       flex: 1;
@@ -133,7 +133,7 @@
       box-shadow: 0 20px 48px rgba(100,80,200,0.22);
     }
 
-    /* 寃?됱갹 */
+    /* 검색창 */
     .search-wrapper {
       position: relative;
     }
@@ -175,7 +175,7 @@
     }
     #clearBtn:hover { background: rgba(167,139,250,0.2); }
 
-    /* ??*/
+    /* 탭 */
     .tabs {
       display: flex;
       background: rgba(255, 255, 255, 0.4);
@@ -216,13 +216,13 @@
       color: var(--color-primary-dark);
     }
 
-    /* 寃곌낵 ?곸뿭 ???⑤뵫 */
+    /* 결과 영역 안 패딩 */
     .results-container {
       padding: 20px 18px 28px;
       min-height: 250px;
     }
 
-    /* ?곹깭 硫붿떆吏 */
+    /* 상태 메시지 */
     .status-msg {
       text-align: center;
       padding: 40px 20px;
@@ -232,7 +232,7 @@
     .status-msg h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; color: var(--color-primary); }
     .status-msg p  { font-size: 0.85rem; }
 
-    /* 寃곌낵 ?ㅻ뜑 */
+    /* 결과 헤더 */
     .result-header {
       display: flex;
       align-items: center;
@@ -246,7 +246,7 @@
       font-weight: 600;
     }
 
-    /* ?뱀뀡 ?쒕ぉ */
+    /* 섹션 제목 */
     .section-label {
       display: flex;
       align-items: center;
@@ -267,7 +267,7 @@
     }
 
     /* ============================================================
-       ?곕씫泥?移대뱶
+       연락처 카드
        ============================================================ */
     .contact-card {
       background: var(--color-card);
@@ -362,7 +362,7 @@
     }
     .phone-link:hover { opacity: .92; transform: scale(1.01); box-shadow: 0 4px 14px rgba(100,80,200,0.28); }
 
-    /* 寃?됱뼱 ?섏씠?쇱씠??*/
+    /* 검색어 하이라이트 */
     .highlight {
       background: var(--color-accent-light);
       color: var(--color-primary-dark);
@@ -371,7 +371,7 @@
     }
 
     /* ============================================================
-       ?뗮꽣
+       풋터
        ============================================================ */
     .app-footer {
       text-align: center;
@@ -389,7 +389,7 @@
     }
 
     /* ============================================================
-       Toast ?뚮┝
+       Toast 알림
        ============================================================ */
     #toast {
       position: fixed;
@@ -414,7 +414,7 @@
     }
 
     /* ============================================================
-       濡쒕뵫 (?⑤씪??踰꾩쟾??
+       로딩 (온라인 버전용)
        ============================================================ */
     .loading {
       display: flex;
@@ -434,7 +434,7 @@
     @keyframes spin { to { transform: rotate(360deg); } }
 
     /* ============================================================
-       諛섏쓳??
+       반응형
        ============================================================ */
     @media (min-width: 640px) {
       .header-title h1 { font-size: 1.15rem; }
@@ -448,47 +448,47 @@
 </head>
 <body>
 
-<!-- ?ㅻ뜑 (濡쒓퀬 諛???댄?) -->
+<!-- 헤더 (로고 및 타이틀) -->
 <header class="app-header">
   <div class="header-top">
     <div class="header-left">
       <div class="header-logo">
-        <img src="data:image/png;base64,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" alt="?몄쥌?밸퀎?먯튂?쒓탳?≪껌 濡쒓퀬" width="48" height="48" style="border-radius:50%;object-fit:contain;display:block;">
+        <img src="data:image/png;base64,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" alt="세종특별자치시교육청 로고" width="48" height="48" style="border-radius:50%;object-fit:contain;display:block;">
       </div>
       <div class="header-title">
-        <h1>?몄쥌?밸퀎?먯튂?쒓탳?≪껌</h1>
-        <p>?숆탳 諛?援먯쑁泥??듯빀 ?곕씫泥?寃??/p>
+        <h1>세종특별자치시교육청</h1>
+        <p>학교 및 교육청 통합 연락처 검색</p>
       </div>
     </div>
     <div class="version-badge">Ver. 2026-07</div>
   </div>
 </header>
 
-<!-- 硫붿씤 肄섑뀗痢?-->
+<!-- 메인 콘텐츠 -->
 
-<!-- 硫붿씤 肄섑뀗痢?移대뱶 (?ъ슜???붽뎄 ?κ렐 紐⑥꽌由??ш컖???붿옄???곸슜) -->
+<!-- 메인 콘텐츠 카드 (사용자 요구 둥근 모서리 사각형 디자인 적용) -->
 <main class="main-container">
   <div class="app-card">
     <div class="search-wrapper">
-      <span class="search-icon">?뵇</span>
-      <input type="search" id="searchInput" placeholder="?대쫫, ?뚯냽, ?대떦?낅Т濡?寃??.." autocomplete="off" aria-label="?곕씫泥?寃?? />
-      <button id="clearBtn" aria-label="寃?됱뼱 吏?곌린">??/button>
+      <span class="search-icon">🔍</span>
+      <input type="search" id="searchInput" placeholder="이름, 소속, 담당업무로 검색..." autocomplete="off" aria-label="연락처 검색" />
+      <button id="clearBtn" aria-label="검색어 지우기">✕</button>
     </div>
-    <nav class="tabs" role="tablist" aria-label="援щ텇 ??>
+    <nav class="tabs" role="tablist" aria-label="구분 탭">
       <button class="tab-btn active" id="tab-all" role="tab" aria-selected="true" data-tab="all" onclick="switchTab('all')">
-        ?꾩껜 <span class="tab-count" id="cnt-all">0</span>
+        전체 <span class="tab-count" id="cnt-all">0</span>
       </button>
       <button class="tab-btn" id="tab-school" role="tab" aria-selected="false" data-tab="school" onclick="switchTab('school')">
-        ?룶 ?숆탳 <span class="tab-count" id="cnt-school">0</span>
+        🏫 학교 <span class="tab-count" id="cnt-school">0</span>
       </button>
       <button class="tab-btn" id="tab-office" role="tab" aria-selected="false" data-tab="office" onclick="switchTab('office')">
-        ?룢截?援먯쑁泥?<span class="tab-count" id="cnt-office">0</span>
+        🏛️ 교육청 <span class="tab-count" id="cnt-office">0</span>
       </button>
     </nav>
     <div class="results-container">
       <div class="loading" id="loadingView">
         <div class="spinner"></div>
-        <p style="color: var(--color-text-muted); font-size: 0.9rem;">?곗씠?곕? 遺덈윭?ㅻ뒗 以?..</p>
+        <p style="color: var(--color-text-muted); font-size: 0.9rem;">데이터를 불러오는 중...</p>
       </div>
       <div id="resultsArea" style="display:none;"></div>
     </div>
@@ -499,27 +499,27 @@
 
 
 <footer class="app-footer">
-  <span>???몄쥌?밸퀎?먯튂?쒓탳?≪껌 ?숆탳?뺤콉怨?/span>
+  <span>ⓒ 세종특별자치시교육청 학교정책과</span>
 </footer>
-<!-- Toast ?뚮┝ -->
+<!-- Toast 알림 -->
 <div id="toast" role="status" aria-live="polite"></div>
 
 <script>
 // ============================================================
-// ?곹깭 蹂??
+// 상태 변수
 // ============================================================
-let allContacts = [];          // ?꾩껜 ?먮낯 ?곗씠??
-let currentTab = 'all';        // ?꾩옱 ?좏깮????
-let searchQuery = '';          // ?꾩옱 寃?됱뼱
-let isMobile = false;          // 紐⑤컮???щ? 媛먯?
+let allContacts = [];          // 전체 원본 데이터
+let currentTab = 'all';        // 현재 선택된 탭
+let searchQuery = '';          // 현재 검색어
+let isMobile = false;          // 모바일 여부 감지
 
-// 紐⑤컮??媛먯?
+// 모바일 감지
 function detectMobile() {
   isMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
 }
 
 // ============================================================
-// ?곗씠??濡쒕뱶 (fetch)
+// 데이터 로드 (fetch)
 // ============================================================
 async function loadContacts() {
   try {
@@ -532,36 +532,36 @@ async function loadContacts() {
   } catch (err) {
     document.getElementById('loadingView').innerHTML = `
       <div class="status-msg">
-        <div class="icon">?좑툘</div>
-        <h3>?곗씠?곕? 遺덈윭?????놁뒿?덈떎</h3>
-        <p>contacts.json ?뚯씪??媛숈? 寃쎈줈???덈뒗吏 ?뺤씤??二쇱꽭??</p>
+        <div class="icon">⚠️</div>
+        <h3>데이터를 불러올 수 없습니다</h3>
+        <p>contacts.json 파일이 같은 경로에 있는지 확인해 주세요.</p>
         <p style="margin-top:8px;font-size:0.8rem;color:#999;">${err.message}</p>
       </div>`;
   }
 }
 
 // ============================================================
-// 寃???꾪꽣留?
+// 검색 필터링
 // ============================================================
 function filterContacts(contacts, query, tab) {
   let filtered = contacts;
 
-  // ???꾪꽣
+  // 탭 필터
   if (tab === 'school') {
-    filtered = filtered.filter(c => c['遺꾨쪟'] === '?숆탳' || c['遺꾨쪟'] === '?숆탳?뺣낫');
+    filtered = filtered.filter(c => c['분류'] === '학교' || c['분류'] === '학교정보');
   } else if (tab === 'office') {
-    filtered = filtered.filter(c => c['遺꾨쪟'] === '援먯쑁泥?);
+    filtered = filtered.filter(c => c['분류'] === '교육청');
   }
 
-  // 寃?됱뼱 ?꾪꽣
+  // 검색어 필터
   if (query.trim()) {
     const q = query.trim().toLowerCase();
     filtered = filtered.filter(c =>
-      (c['?깅챸'] || '').toLowerCase().includes(q) ||
-      (c['?뚯냽'] || '').toLowerCase().includes(q) ||
-      (c['?낅Т'] || '').toLowerCase().includes(q) ||
-      (c['吏곸쐞'] || '').toLowerCase().includes(q) ||
-      (c['?곕씫泥?] || '').includes(q)
+      (c['성명'] || '').toLowerCase().includes(q) ||
+      (c['소속'] || '').toLowerCase().includes(q) ||
+      (c['업무'] || '').toLowerCase().includes(q) ||
+      (c['직위'] || '').toLowerCase().includes(q) ||
+      (c['연락처'] || '').includes(q)
     );
   }
 
@@ -569,7 +569,7 @@ function filterContacts(contacts, query, tab) {
 }
 
 // ============================================================
-// ?섏씠?쇱씠??泥섎━
+// 하이라이트 처리
 // ============================================================
 function hl(text, query) {
   if (!query || !text) return escHtml(text || '');
@@ -582,24 +582,24 @@ function escHtml(str) {
 }
 
 // ============================================================
-// 移대뱶 ?뚮뜑留?
+// 카드 렌더링
 // ============================================================
 function renderCard(c, query) {
-  const isSchoolInfo = c['遺꾨쪟'] === '?숆탳?뺣낫';
-  const isSchool  = c['遺꾨쪟'] === '?숆탳' || isSchoolInfo;
+  const isSchoolInfo = c['분류'] === '학교정보';
+  const isSchool  = c['분류'] === '학교' || isSchoolInfo;
   const cls       = isSchool ? 'school' : 'office';
-  const icon      = isSchool ? '?룶' : '?룢截?;
-  const badgeTxt  = isSchool ? (isSchoolInfo ? '?숆탳??쒖젙蹂? : '?숆탳') : '援먯쑁泥?;
-  const phone     = c['?곕씫泥?] || '';
-  const name      = c['?깅챸']   || '';
-  const pos       = c['吏곸쐞']   || '';
-  const org       = c['?뚯냽']   || '';
-  const task      = c['?낅Т']   || '';
-  const est       = c['媛쒓탳??] || '';
-  const clsNum    = c['?숆툒??] || '';
-  const stdNum    = c['?숈깮??] || '';
+  const icon      = isSchool ? '🏫' : '🏛️';
+  const badgeTxt  = isSchool ? (isSchoolInfo ? '학교대표정보' : '학교') : '교육청';
+  const phone     = c['연락처'] || '';
+  const name      = c['성명']   || '';
+  const pos       = c['직위']   || '';
+  const org       = c['소속']   || '';
+  const task      = c['업무']   || '';
+  const est       = c['개교일'] || '';
+  const clsNum    = c['학급수'] || '';
+  const stdNum    = c['학생수'] || '';
 
-  // ?꾪솕 留곹겕: 紐⑤컮?쇱? tel:, ?곗뒪?ы넲? 蹂듭궗 踰꾪듉
+  // 전화 링크: 모바일은 tel:, 데스크톱은 복사 버튼
   let phoneHtml = '';
   if (phone) {
     const telNum = phone.replace(/[^0-9]/g, '');
@@ -607,7 +607,7 @@ function renderCard(c, query) {
       <div class="card-phone">
         <a href="tel:${telNum}" class="phone-link" id="phone-${telNum}"
            onclick="handlePhoneClick(event, '${escHtml(phone)}')">
-          ?뱸 ${escHtml(phone)}
+          📞 ${escHtml(phone)}
         </a>
       </div>`;
   }
@@ -623,9 +623,9 @@ function renderCard(c, query) {
               <span class="badge school" style="background:#e0f2fe; color:#0369a1;">${badgeTxt}</span>
             </div>
             <div style="margin-top: 8px; font-size: 0.85rem; color: var(--color-text); display: grid; gap: 4px; border-top: 1px dashed var(--color-border); padding-top: 8px;">
-              ${est ? `<div>?뱟 <strong>媛쒓탳??</strong> ${escHtml(est)}</div>` : ''}
-              ${clsNum ? `<div>?뱤 <strong>?숆툒??</strong> ${escHtml(clsNum)}</div>` : ''}
-              ${stdNum ? `<div>?뫁 <strong>?숈깮??</strong> ${escHtml(stdNum)}</div>` : ''}
+              ${est ? `<div>📅 <strong>개교일:</strong> ${escHtml(est)}</div>` : ''}
+              ${clsNum ? `<div>📊 <strong>학급수:</strong> ${escHtml(clsNum)}</div>` : ''}
+              ${stdNum ? `<div>👥 <strong>학생수:</strong> ${escHtml(stdNum)}</div>` : ''}
             </div>
           </div>
         </div>
@@ -643,8 +643,8 @@ function renderCard(c, query) {
             <span class="badge ${cls}">${badgeTxt}</span>
           </div>
           ${pos ? `<div class="card-position">${hl(pos, query)}</div>` : ''}
-          <div class="card-org">?뱧 ${hl(org, query)}</div>
-          ${task ? `<div class="card-task">?뱦 ${hl(task, query)}</div>` : ''}
+          <div class="card-org">📍 ${hl(org, query)}</div>
+          ${task ? `<div class="card-task">📌 ${hl(task, query)}</div>` : ''}
         </div>
       </div>
       ${phoneHtml}
@@ -652,15 +652,15 @@ function renderCard(c, query) {
 }
 
 // ============================================================
-// 寃곌낵 ?뚮뜑留?
+// 결과 렌더링
 // ============================================================
 function renderResults() {
   const filtered = filterContacts(allContacts, searchQuery, currentTab);
 
-  // ?숆탳?뺣낫 移대뱶媛 ??긽 ?곷떒???ㅻ룄濡??뺣젹
+  // 학교정보 카드가 항상 상단에 오도록 정렬
   filtered.sort((a, b) => {
-    const isInfoA = a['遺꾨쪟'] === '?숆탳?뺣낫';
-    const isInfoB = b['遺꾨쪟'] === '?숆탳?뺣낫';
+    const isInfoA = a['분류'] === '학교정보';
+    const isInfoB = b['분류'] === '학교정보';
     if (isInfoA && !isInfoB) return -1;
     if (!isInfoA && isInfoB) return 1;
     return 0;
@@ -670,7 +670,7 @@ function renderResults() {
   const officeFiltered = filterContacts(allContacts, searchQuery, 'office');
   const allFiltered    = filterContacts(allContacts, searchQuery, 'all');
 
-  // ??移댁슫???낅뜲?댄듃
+  // 탭 카운트 업데이트
   document.getElementById('cnt-all').textContent    = allFiltered.length;
   document.getElementById('cnt-school').textContent = schoolFiltered.length;
   document.getElementById('cnt-office').textContent = officeFiltered.length;
@@ -678,14 +678,14 @@ function renderResults() {
   const area = document.getElementById('resultsArea');
 
   if (!searchQuery.trim()) {
-    // 寃?됱뼱 ?놁쓬 - ?덈궡 硫붿떆吏
+    // 검색어 없음 - 안내 메시지
     area.innerHTML = `
       <div class="status-msg">
-        <div class="icon">?뵇</div>
-        <h3>寃?됱뼱瑜??낅젰??二쇱꽭??/h3>
-        <p>?대쫫, ?뚯냽 ?숆탳/遺?? ?대떦?낅Т濡?寃?됲븷 ???덉뒿?덈떎.</p>
+        <div class="icon">🔍</div>
+        <h3>검색어를 입력해 주세요</h3>
+        <p>이름, 소속 학교/부서, 담당업무로 검색할 수 있습니다.</p>
         <p style="margin-top:8px;color:#94a3b8;font-size:0.8rem;">
-          珥?${allContacts.length}媛??곕씫泥??깅줉??
+          총 ${allContacts.length}개 연락처 등록됨
         </p>
       </div>`;
     return;
@@ -694,37 +694,37 @@ function renderResults() {
   if (filtered.length === 0) {
     area.innerHTML = `
       <div class="status-msg">
-        <div class="icon">?쁾</div>
-        <h3>寃??寃곌낵媛 ?놁뒿?덈떎</h3>
-        <p>"${escHtml(searchQuery)}"???대떦?섎뒗 ?곕씫泥섎? 李얠? 紐삵뻽?듬땲??</p>
+        <div class="icon">😅</div>
+        <h3>검색 결과가 없습니다</h3>
+        <p>"${escHtml(searchQuery)}"에 해당하는 연락처를 찾지 못했습니다.</p>
       </div>`;
     return;
   }
 
-  // ??뿉 ?곕씪 ?뱀뀡 遺꾨━ ?뚮뜑留?
+  // 탭에 따라 섹션 분리 렌더링
   let html = `<div class="result-header">
-    <span class="result-count">寃??寃곌낵 ${filtered.length}媛?/span>
+    <span class="result-count">검색 결과 ${filtered.length}개</span>
   </div>`;
 
   if (currentTab === 'all') {
-    // ?꾩껜 ?? 援먯쑁泥?/ ?숆탳 ?뱀뀡?쇰줈 遺꾨━
-    const offices = filtered.filter(c => c['遺꾨쪟'] === '援먯쑁泥?);
-    const schools = filtered.filter(c => c['遺꾨쪟'] === '?숆탳' || c['遺꾨쪟'] === '?숆탳?뺣낫');
+    // 전체 탭: 교육청 / 학교 섹션으로 분리
+    const offices = filtered.filter(c => c['분류'] === '교육청');
+    const schools = filtered.filter(c => c['분류'] === '학교' || c['분류'] === '학교정보');
 
     if (offices.length > 0) {
-      html += `<div class="section-label">?룢截?援먯쑁泥?(${offices.length}紐?</div>`;
+      html += `<div class="section-label">🏛️ 교육청 (${offices.length}명)</div>`;
       offices.forEach(c => { html += renderCard(c, searchQuery); });
     }
     if (schools.length > 0) {
-      // ?숆탳 ?뱀뀡 ?대??먯꽌??留덉뒪???뺣낫 ?뺣젹 蹂댁옣
+      // 학교 섹션 내부에서도 마스터 정보 정렬 보장
       schools.sort((a, b) => {
-        const isInfoA = a['遺꾨쪟'] === '?숆탳?뺣낫';
-        const isInfoB = b['遺꾨쪟'] === '?숆탳?뺣낫';
+        const isInfoA = a['분류'] === '학교정보';
+        const isInfoB = b['분류'] === '학교정보';
         if (isInfoA && !isInfoB) return -1;
         if (!isInfoA && isInfoB) return 1;
         return 0;
       });
-      html += `<div class="section-label">?룶 ?숆탳 ???諛?援먯쭅???뺣낫 (${schools.length}媛?</div>`;
+      html += `<div class="section-label">🏫 학교 대표 및 교직원 정보 (${schools.length}개)</div>`;
       schools.forEach(c => { html += renderCard(c, searchQuery); });
     }
   } else {
@@ -735,25 +735,25 @@ function renderResults() {
 }
 
 // ============================================================
-// ?꾪솕 ?대┃ ?몃뱾??(紐⑤컮?? tel ?덉슜, ?곗뒪?ы넲: 蹂듭궗)
+// 전화 클릭 핸들러 (모바일: tel 허용, 데스크톱: 복사)
 // ============================================================
 function handlePhoneClick(event, phone) {
   if (!isMobile) {
     event.preventDefault();
     copyPhone(phone);
   }
-  // 紐⑤컮?쇱? 湲곕낯 tel: ?숈옉 ?덉슜
+  // 모바일은 기본 tel: 동작 허용
 }
 
 // ============================================================
-// ?꾪솕踰덊샇 蹂듭궗
+// 전화번호 복사
 // ============================================================
 function copyPhone(phone) {
   const clean = phone.replace(/[^0-9\-]/g, '');
   if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(clean).then(() => showToast('?뱥 踰덊샇媛 蹂듭궗?섏뿀?듬땲?? ' + clean));
+    navigator.clipboard.writeText(clean).then(() => showToast('📋 번호가 복사되었습니다: ' + clean));
   } else {
-    // ?대갚: textarea
+    // 폴백: textarea
     const ta = document.createElement('textarea');
     ta.value = clean;
     ta.style.position = 'fixed'; ta.style.opacity = '0';
@@ -761,12 +761,12 @@ function copyPhone(phone) {
     ta.select();
     document.execCommand('copy');
     document.body.removeChild(ta);
-    showToast('?뱥 踰덊샇媛 蹂듭궗?섏뿀?듬땲?? ' + clean);
+    showToast('📋 번호가 복사되었습니다: ' + clean);
   }
 }
 
 // ============================================================
-// Toast ?뚮┝
+// Toast 알림
 // ============================================================
 let toastTimer;
 function showToast(msg) {
@@ -778,7 +778,7 @@ function showToast(msg) {
 }
 
 // ============================================================
-// ???꾪솚
+// 탭 전환
 // ============================================================
 function switchTab(tab) {
   currentTab = tab;
@@ -791,7 +791,7 @@ function switchTab(tab) {
 }
 
 // ============================================================
-// 寃???낅젰 ?대깽??
+// 검색 입력 이벤트
 // ============================================================
 const searchInput = document.getElementById('searchInput');
 const clearBtn    = document.getElementById('clearBtn');
@@ -801,7 +801,7 @@ searchInput.addEventListener('input', () => {
   searchQuery = searchInput.value;
   clearBtn.style.display = searchQuery ? 'block' : 'none';
   clearTimeout(searchTimer);
-  searchTimer = setTimeout(renderResults, 180); // ?붾컮?댁떛
+  searchTimer = setTimeout(renderResults, 180); // 디바운싱
 });
 
 clearBtn.addEventListener('click', () => {
@@ -813,7 +813,7 @@ clearBtn.addEventListener('click', () => {
 });
 
 // ============================================================
-// 珥덇린??
+// 초기화
 // ============================================================
 detectMobile();
 loadContacts();
